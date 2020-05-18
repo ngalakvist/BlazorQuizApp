@@ -1,0 +1,33 @@
+﻿@page "/Quiz"
+@inject QuizService qService
+<h3>Quiz challenge</h3>
+<hr />
+<h4>Current score: @score</h4>
+ 
+@foreach (var q in questions)
+{
+    <p> @q.Text</p>
+    <ul>
+      @foreach (var ans in q.AnswerChoices)
+      {
+        <li>
+          <input type="radio"  id="choices" @onchange="@(e => CheckAnswer(q, ans))" /> 
+          <label for="choices">@ans</label>
+        </li>
+      }
+    </ul>
+    <div></div>
+}
+@code {
+  Question[] questions = QuizService.Questions;
+  int score = 0;
+  
+  private void CheckAnswer( Question question ,string usersAnswerChoice)
+  {
+    if (question.Answer == usersAnswerChoice)
+    {
+      score++;
+    }
+  }
+
+}
