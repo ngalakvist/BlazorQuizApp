@@ -11,7 +11,7 @@
       @foreach (var ans in q.AnswerChoices)
       {
         <li>
-          <input type="radio"  id="choices" @onchange="@(e => CheckAnswer(q, ans))" /> 
+          <input type="radio"  id="@ans" name="choices" @onchange="@(e => CheckAnswer(q, ans))" /> 
           <label for="choices">@ans</label>
         </li>
       }
